@@ -1,0 +1,12 @@
+{
+  "name": "delivery-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compose:up:dev": "(cd app && docker-compose -f docker-compose.dev.yml up -d --build)"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
