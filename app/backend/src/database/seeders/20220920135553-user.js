@@ -1,7 +1,7 @@
 const { QueryInterface } = require("sequelize");
 
 module.exports = {
-  up: async (QueryInterface) => {
+  up: async (QueryInterface, _Sequelize) => {
     await QueryInterface.bulkInsert('users', [
       {
         id: 1,
