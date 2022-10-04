@@ -27,6 +27,7 @@ Product.init({
 	urlImage: {
 		type: STRING(100),
 		allowNull: false,
+    field: 'url_image'
 	}
 	}, {
 		sequelize: db,

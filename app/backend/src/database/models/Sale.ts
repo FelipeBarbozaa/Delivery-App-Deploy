@@ -22,26 +22,32 @@ Sale.init({
   userId: {
     type: INTEGER,
     allowNull: false,
+    field: 'user_id'
   },
   sellerId: {
     type: INTEGER,
     allowNull: false,
+    field: 'seller_id'
   },
   totalPrice: {
     type: DECIMAL(9, 2),
     allowNull: false,
+    field: 'total_price'
   },
   deliveryAddress: {
     type: STRING(50),
     allowNull: false,
+    field: 'delivery_address'
   },
   deliveryNumber: {
     type: INTEGER,
     allowNull: false,
+    field: 'delivery_number'
   },
   saleDate: {
     type: DATE,
-    allowNull: false
+    allowNull: false,
+    field: 'sale_date'
   },
   status: {
     type: STRING,

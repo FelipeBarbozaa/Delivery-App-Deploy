@@ -11,12 +11,14 @@ SaleProduct.init({
     saleId: {
         type: INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        field: 'sale_id'
     },
     productId: {
         type: INTEGER,
         primaryKey: true,
-        allowNull: false
+        allowNull: false,
+        field: 'product_id'
     },
     quantity: {
         type: INTEGER,
