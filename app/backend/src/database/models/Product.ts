@@ -5,7 +5,7 @@ class Product extends Model {
 	id!: number;
 	name!: string;
 	price!: number;
-	url_image!: string;
+	urlImage!: string;
 }
 
 Product.init({
@@ -24,7 +24,7 @@ Product.init({
 		type: DECIMAL(4, 2),
 		allowNull: false,
 	},
-	url_image: {
+	urlImage: {
 		type: STRING(100),
 		allowNull: false,
 	}
@@ -32,6 +32,6 @@ Product.init({
 		sequelize: db,
 		modelName: 'products',
 		timestamps: false
-	})
+	});
 
 export default Product;

@@ -3,12 +3,12 @@ import db from '.';
 
 class Sale extends Model {
   id!: number;
-  user_id!: number;
-  seller_id!: number;
-  total_price!: number;
-  delivery_address!: string;
-  delivery_number!: string;
-  sale_date!: Date;
+  userId!: number;
+  sellerId!: number;
+  totalPrice!: number;
+  deliveryAddress!: string;
+  deliveryNumber!: string;
+  saleDate!: Date;
   status!: string;
 }
 
@@ -19,27 +19,27 @@ Sale.init({
     primaryKey: true,
     autoIncrement: true,
   },
-  user_id: {
+  userId: {
     type: INTEGER,
     allowNull: false,
   },
-  seller_id: {
+  sellerId: {
     type: INTEGER,
     allowNull: false,
   },
-  total_price: {
+  totalPrice: {
     type: DECIMAL(9, 2),
     allowNull: false,
   },
-  delivery_address: {
+  deliveryAddress: {
     type: STRING(50),
     allowNull: false,
   },
-  delivery_number: {
+  deliveryNumber: {
     type: INTEGER,
     allowNull: false,
   },
-  sale_date: {
+  saleDate: {
     type: DATE,
     allowNull: false
   },

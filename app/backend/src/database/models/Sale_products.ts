@@ -1,19 +1,19 @@
 import { Model, INTEGER } from 'sequelize';
 import db from '.';
 
-class Sale_product extends Model {
-    sale_id!: number;
-    product_id!: number;
+class SaleProduct extends Model {
+    saleId!: number;
+    productId!: number;
     quantity!: number;
 }
 
-Sale_product.init({
-    sale_id: {
+SaleProduct.init({
+    saleId: {
         type: INTEGER,
         primaryKey: true,
         allowNull: false
     },
-    product_id: {
+    productId: {
         type: INTEGER,
         primaryKey: true,
         allowNull: false
@@ -26,6 +26,6 @@ Sale_product.init({
 sequelize: db,
 modelName: 'sales_products',
 timestamps: false
-})
+});
 
-export default Sale_product
+export default SaleProduct;
