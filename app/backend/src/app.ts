@@ -19,7 +19,7 @@ app.get('/sales', async (req, res) => {
 
 app.get('/products', async (req, res) => {
   const products = await Product.findAll();
-  return res.status(200).json({ message: products });
+  return res.status(200).json({ message: products })
 })
 
 app.get('/sales_products', async (req, res) => {
