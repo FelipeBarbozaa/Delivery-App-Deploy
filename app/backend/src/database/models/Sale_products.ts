@@ -27,3 +27,5 @@ sequelize: db,
 modelName: 'sales_products',
 timestamps: false
 })
+
+export default Sale_product

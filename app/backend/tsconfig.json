@@ -6,6 +6,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
