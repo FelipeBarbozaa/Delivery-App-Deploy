@@ -1,22 +1,27 @@
-import React from "react";
-import { isAuthentication } from "./auth";
+import React from 'react';
 
-import { BrowserRouter, Route, Routes as Switch, Navigate } from "react-router-dom";
-import { Login } from "./login";
+import {
+  BrowserRouter,
+  Route,
+  Routes as Switch,
+  Navigate,
+} from 'react-router-dom';
+import Login from './pages/Login';
+import PrivateRoute from './PrivateRoutes';
 
-const PrivateRoute = ({ children }) => {
-  const authed = isAuthentication()
-  return authed ? children : <Navigate to="/" />;
-}
-
+// eslint-disable-next-line react/function-component-definition
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" element={<h1>Hello World</h1>} />
-      <Route exact path="/login" element={
-        <PrivateRoute>
-          <Login />
-        </PrivateRoute>} />
+      <Route exact path="/" element={ <Navigate to="/login" /> } />
+      <Route exact path="/login" element={ <Login /> } />
+      <Route
+        exact
+        path="/produtos"
+        element={
+          <PrivateRoute>Você está logado na tela de produtos.</PrivateRoute>
+        }
+      />
     </Switch>
   </BrowserRouter>
 );
