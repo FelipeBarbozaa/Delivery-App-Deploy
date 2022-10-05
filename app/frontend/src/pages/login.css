@@ -1,0 +1,125 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+#login_logo {
+  padding-top: 20px;
+  display: block;
+  margin-bottom: 0px;
+  padding-bottom: 0;
+  margin: 0px auto;
+  width: 70%;
+  height: 70%;
+  background-color: transparent;
+  }
+
+.form__field {
+  margin: auto;
+  font-family: inherit;
+  display: block;
+  width: 50%;
+  border: 0;
+  border-bottom: 2px solid #b9c4c9;
+  outline: 0;
+  font-size: 1.2rem;
+  color: rgb(0, 0, 0);
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2S;
+  font-size: 1rem;
+}
+
+.form__field:focus {
+  padding-bottom: 6px;
+  font-weight: 500;
+  border-width: 3px;
+  -o-border-image: linear-gradient(to right, #27799C, #68C2E8);
+     border-image: linear-gradient(to right, #27799C, #68C2E8);
+  border-image-slice: 1;
+}
+.form__field:focus ~ .form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+button {
+  margin: auto;
+  display: block;
+}
+
+.form__group a {
+  display: block;
+  text-decoration: none;
+  margin: 10px;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.form__group a:hover {
+  color: #27799C;
+}
+
+.draw-border {
+  box-shadow: inset 0 0 0 4px #b9c4c9;
+  color: #b9c4c9;
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+.draw-border::before, .draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+.draw-border:enabled {
+  color: #27799C;
+}
+.draw-border:enabled::before, .draw-border:enabled::after {
+  border-color: #27799C;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+.draw-border:enabled::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:enabled::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.btn {
+  width: 50%;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  font: 700 1.2rem "Roboto Slab", sans-serif;
+  letter-spacing: 0.05rem;
+}
+.btn:focus {
+  outline: 2px dotted #55d7dc;
+}/*# sourceMappingURL=main.css.map */
