@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('products', {
@@ -20,9 +21,9 @@ module.exports = {
         type: Sequelize.STRING(100),
         allowNull: false
       },
-    })
+    });
   },
-  down: async (queryInterface, _Sequelize) => {
+  down: async (queryInterface) => {
     await queryInterface.dropTable('products');
   },
 };

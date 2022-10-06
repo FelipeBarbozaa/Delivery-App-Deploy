@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('sales_products', {
@@ -17,10 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       }
-    })
+    });
   },
 
-  down: async  (queryInterface, _Sequelize) => {
-    await queryInterface.dropTable('sales_products')
+  down: async  (queryInterface) => {
+    await queryInterface.dropTable('sales_products');
   }
 };
