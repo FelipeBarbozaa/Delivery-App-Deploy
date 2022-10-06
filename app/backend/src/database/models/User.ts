@@ -1,4 +1,4 @@
-import { Model, INTEGER, STRING } from 'sequelize';
+import { Model, INTEGER, STRING, BOOLEAN } from 'sequelize';
 import db from '.';
 
 class User extends Model {
@@ -33,6 +33,11 @@ User.init({
     type: STRING(50),
     defaultValue: 'customer',
   },
+  active: {
+    type: BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  }
 }, {
   sequelize: db,
   modelName: 'users',
