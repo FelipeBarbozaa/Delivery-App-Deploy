@@ -5,7 +5,6 @@ export default class UserController {
   constructor(private userService: IUserService) {}
 
   async login(req: Request, res: Response) {
-    console.log('passou');
     const { email, password } = req.body;
     const result = await this.userService.tryLogin({email, password});
     return res.status(200).json({ token: result });
