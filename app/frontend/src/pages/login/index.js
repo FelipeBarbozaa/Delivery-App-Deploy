@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import loginLogo from '../images/loginLogo.png';
-import SIX from '../utils/numbers';
-import './login.css';
+import loginLogo from '../../images/loginLogo.png';
+import { SIX } from '../../utils/numbers';
+import './main.css';
 
 export default function Login() {
   const [data, setData] = useState({});
