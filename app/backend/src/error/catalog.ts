@@ -1,6 +1,7 @@
 export enum ErrorTypes {
   InvalidLogin = 'InvalidLogin',
-  Inactive = 'Inactive'
+  Inactive = 'Inactive',
+  EmailExists = 'EmailExists'
 }
 
 type ErrorResponseObject = { 
@@ -20,5 +21,9 @@ export const errorCatalog: ErrorCatalog = {
   Inactive: {
     error: 'You need to activate your account via the link sent in the email',
     httpStatus: 401,
+  },
+  EmailExists: {
+    error: 'Email already exists',
+    httpStatus: 409,
   }
 };

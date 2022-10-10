@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { userLoginSchema } from '../schemas/UserSchema';
+import { userRegisterSchema } from '../schemas/UserSchema';
 
-const loginCredencials = async (
+const registerCredencials = async (
   req: Request, res: Response, next: NextFunction
   ) => {
-    const { email, password } = req.body;
-    const { error } = userLoginSchema.validate({ email, password });
+    const { name, email, password } = req.body;
+    const { error } = userRegisterSchema.validate({ name, email, password });
     if (error) {
       const [statusCode, message] = error.message.split('|');
       return res.status(Number(statusCode)).json({ error: message });
@@ -13,4 +13,4 @@ const loginCredencials = async (
     next();
 };
 
-export default loginCredencials;
+export default registerCredencials;
