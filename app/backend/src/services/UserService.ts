@@ -1,5 +1,6 @@
 import md5 from 'md5';
 import User from '../database/models/User';
+import sendEmail from '../nodemailer';
 import { ErrorTypes } from '../error/catalog';
 import {
   IUserModel,
@@ -36,6 +37,10 @@ export default class UserService implements IUserService {
     if (checkIfExists) throw emailExistsError;
 
     const result = await this.model.create(data);
+    if (result) {
+      const token = Token.createToken({ id: result.id });
+      sendEmail(email, token);
+    }
     return result;
   }
 }
