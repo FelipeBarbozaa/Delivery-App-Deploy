@@ -19,7 +19,7 @@ const Routes = () => (
       <Route exact path="/register" element={ <Register /> } />
       <Route
         exact
-        path="/produtos"
+        path="/products"
         element={
           <PrivateRoute>Você está logado na tela de produtos.</PrivateRoute>
         }

@@ -2,6 +2,13 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+#error_msg {
+  color: red;
+  position: relative;
+  text-align: center;
+  margin: auto;
+}
+
 #login_logo {
   padding-top: 20px;
   display: block;
@@ -26,6 +33,10 @@ body {
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
+}
+
+.email_field {
+  margin-top: 20px;
 }
 
 .form__label {

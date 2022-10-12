@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import tryLogin from '../../api/login';
 import loginLogo from '../../images/loginLogo.png';
 import { SIX } from '../../utils/numbers';
 import './main.css';
@@ -6,10 +8,24 @@ import './main.css';
 export default function Login() {
   const [data, setData] = useState({});
   const [disabled, setDisabled] = useState(true);
+  const [error, setError] = useState({ active: false, message: '' });
+  const navigate = useNavigate();
   const { email, password } = data;
 
   const handleInput = ({ target: { name, value } }) => {
     setData({ ...data, [name]: value });
+  };
+
+  const login = async () => {
+    const response = await tryLogin({ email, password });
+    if (response.error) {
+      setError({ active: true, message: response.error });
+    }
+
+    if (response.token) {
+      localStorage.setItem('token', response.token);
+      navigate('/products');
+    }
   };
 
   useEffect(() => {
@@ -26,9 +42,11 @@ export default function Login() {
   return (
     <div className="form__group">
       <img id="login_logo" src={ loginLogo } alt="login logo" />
+      { error.active
+        ? <p id="error_msg">{ error.message }</p> : null}
       <input
         type="email"
-        className="form__field"
+        className="form__field email_field"
         placeholder="email@email.com"
         name="email"
         required
@@ -47,6 +65,7 @@ export default function Login() {
         type="button"
         className="btn draw-border"
         disabled={ disabled }
+        onClick={ login }
       >
         Login
       </button>
