@@ -6,6 +6,7 @@ import {
   Routes as Switch,
   Navigate,
 } from 'react-router-dom';
+import Confirmation from './pages/confirmation/confirmation';
 import Login from './pages/login/index';
 import Register from './pages/register';
 import PrivateRoute from './PrivateRoutes';
@@ -24,6 +25,7 @@ const Routes = () => (
           <PrivateRoute>Você está logado na tela de produtos.</PrivateRoute>
         }
       />
+      <Route path="/confirmation/:token" element={ <Confirmation /> } />
     </Switch>
   </BrowserRouter>
 );

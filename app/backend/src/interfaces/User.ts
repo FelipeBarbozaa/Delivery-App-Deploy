@@ -7,8 +7,9 @@ export type RegisterData = {
 }
 
 export interface IUserModel {
-  getByEmail(email: string): Promise <User | null>
-  create(data: RegisterData): Promise <User | null>
+  getByEmail(email: string): Promise <User | null>;
+  create(data: RegisterData): Promise <User | null>;
+  update(id: number): Promise<void>;
 }
 
 export interface IUserLoginRequest {
@@ -18,5 +19,6 @@ export interface IUserLoginRequest {
 
 export interface IUserService {
   tryLogin(data: IUserLoginRequest): Promise<string>;
-  create(data: RegisterData): Promise <User | null>
+  create(data: RegisterData): Promise <User | null>;
+  emailConfirmation(token: string): Promise<boolean>;
 }

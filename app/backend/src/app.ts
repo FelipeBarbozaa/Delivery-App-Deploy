@@ -10,10 +10,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use('/', userRouter);
-app.post('/validate', async (req, res) => {
+app.post('/validate', async (req, res, next) => {
   const { authorization } = req.headers;
-  const response = Token.validateToken(authorization as string);
-  return res.status(200).json({ message: response });
+  try {
+    const response = Token.validateToken(authorization as string);
+    if (response && response.type === 'authentication') {
+      return res.status(201).end();
+    }
+    return res.status(500).end();
+  } catch (error) {
+    next(error);
+  }
 });
 
 app.use(errorHandler);

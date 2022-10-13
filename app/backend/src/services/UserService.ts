@@ -25,7 +25,9 @@ export default class UserService implements IUserService {
     const { id, name, role, active } = result;
     if (!active) throw inactiveError;
 
-    const token = Token.createToken({id, name, email, role });
+    const token = Token.createToken(
+      {id, name, email, role, type: 'authentication' }
+    );
     return token;
   }
 
@@ -38,9 +40,18 @@ export default class UserService implements IUserService {
 
     const result = await this.model.create(data);
     if (result) {
-      const token = Token.createToken({ id: result.id });
+      const token = Token.createToken({ id: result.id, type: 'activation' });
       sendEmail(email, token);
     }
     return result;
+  }
+
+  async emailConfirmation(token: string): Promise<boolean> {
+    const response = Token.validateToken(token as string);
+    if (response && response.type === 'activation') {
+      await this.model.update(response.id as number);
+      return true;
+    }
+    return false;
   }
 }

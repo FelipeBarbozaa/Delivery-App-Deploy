@@ -13,6 +13,14 @@ export default class UserController {
   async create(req: Request, res: Response) {
     const { name, email, password } = req.body;
     await this.userService.create({ name, email, password});
-    return res.status(201).end();
+    return res.status(201).json({ message: 'success' });
   }
+
+  async emailConfirmation(req: Request, res: Response) {
+    const { token } = req.params;
+    const result = await this.userService.emailConfirmation(token);
+    if (result) {
+      return res.status(201).end();
+    }
+  } 
 }

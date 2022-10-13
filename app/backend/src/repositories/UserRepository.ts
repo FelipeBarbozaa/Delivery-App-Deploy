@@ -19,4 +19,8 @@ export default class UserRepository implements IUserModel {
     const result = await this.userModel.create(newData);
     return result;
   }
+
+  async update(id: number): Promise<void> {
+    await this.userModel.update({ active: 1}, { where: { id }});
+  }
 }

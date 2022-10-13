@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import registerLogo from '../../images/registerLogo.png';
+import tryRegister from '../../api/register';
 import { SIX, TWELVE } from '../../utils/numbers';
 import './main.css';
 
@@ -10,6 +11,11 @@ export default function Register() {
 
   const handleInput = ({ target: { name, value } }) => {
     setData({ ...data, [name]: value });
+  };
+
+  const register = async () => {
+    const result = await tryRegister({ name: nameReg, email, password });
+    console.log(result);
   };
 
   useEffect(() => {
@@ -59,6 +65,7 @@ export default function Register() {
         type="button"
         className="btn draw-border"
         disabled={ disabled }
+        onClick={ register }
       >
         Cadastrar
       </button>
