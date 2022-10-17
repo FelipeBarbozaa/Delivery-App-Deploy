@@ -13,7 +13,7 @@ import Token from '../token/generateJWT';
 export default class UserService implements IUserService {
   constructor(private model: IUserModel) {}
 
-  async tryLogin(data: IUserLoginRequest): Promise<string> {
+  async tryLogin(data: IUserLoginRequest): Promise<object> {
     const { email, password } = data;
 
     const loginError = new Error(ErrorTypes.InvalidLogin);
@@ -28,7 +28,7 @@ export default class UserService implements IUserService {
     const token = Token.createToken(
       {id, name, email, role, type: 'authentication' }
     );
-    return token;
+    return { token, name };
   }
 
   async create(data: RegisterData): Promise<User | null> {

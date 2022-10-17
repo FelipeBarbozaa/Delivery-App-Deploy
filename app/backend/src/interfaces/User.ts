@@ -18,7 +18,7 @@ export interface IUserLoginRequest {
 }
 
 export interface IUserService {
-  tryLogin(data: IUserLoginRequest): Promise<string>;
+  tryLogin(data: IUserLoginRequest): Promise<object>;
   create(data: RegisterData): Promise <User | null>;
   emailConfirmation(token: string): Promise<boolean>;
 }
