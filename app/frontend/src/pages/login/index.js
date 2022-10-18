@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import tryLogin from '../../api/login';
+import appContext from '../../context/AppContext';
 import loginLogo from '../../images/loginLogo.png';
 import { SIX } from '../../utils/numbers';
 import './main.css';
@@ -11,6 +12,8 @@ export default function Login() {
   const [error, setError] = useState({ active: false, message: '' });
   const navigate = useNavigate();
   const { email, password } = data;
+
+  const { saveUserInfo } = useContext(appContext);
 
   const handleInput = ({ target: { name, value } }) => {
     setData({ ...data, [name]: value });
@@ -23,7 +26,7 @@ export default function Login() {
     }
 
     if (response.token) {
-      localStorage.setItem('token', response.token);
+      saveUserInfo(response);
       navigate('/products');
     }
   };
