@@ -4,7 +4,7 @@ import User from '../database/models/User';
 
 const { JWT_SECRET } = process.env; 
 
-// eslint-disable-next-line max-lines-per-function
+// eslint-disable-next-line max-lines-per-function, complexity
 const validateRouteToken = async (
   req: Request, res: Response, next: NextFunction
   ) => {
@@ -17,8 +17,9 @@ const validateRouteToken = async (
     
     const decoded = jwt.verify(
       authorization, JWT_SECRET as string) as JwtPayload;
+    console.log(decoded);
 
-    if (!decoded) {
+    if (!decoded || decoded.type !== 'authentication') {
       return res.status(401).json({ message: 'Invalid or expired token' });
     }
 
