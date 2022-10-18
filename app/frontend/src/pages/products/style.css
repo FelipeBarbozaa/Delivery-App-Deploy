@@ -1,0 +1,145 @@
+.all-products {
+  margin-top: 50px;
+}
+
+#total {
+  font-size: 1.8rem;
+}
+
+th {
+  width: auto;
+}
+
+#products-page {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(rgba(233, 231, 231, 0.863), rgba(255, 255, 255, 0.863));
+}
+
+.all-products p {
+  font-family: 'Chivo', sans-serif;
+  font-size: 1rem;
+  color: black;
+  font-weight: 550;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.green {
+  color: green;
+}
+
+#remove-product {
+  width: 16px;
+  height: 16px;
+}
+
+#produtos {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.products-info p:first-child {
+  font-size: 0.99rem;
+  max-height: 15px;
+  overflow: hidden;
+}
+
+#cart {
+  margin-top: 5px;
+  width: 55px;
+  height: 45px;
+  margin-bottom: 5px;
+}
+
+section {
+  margin-top: 20px;
+  background: #f4cc01;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+section button {
+  margin-right: 15px;
+}
+
+
+.add-quantity, .rm-quantity {
+  margin: 0;
+}
+
+.add {
+  width: 25px;
+  height: 25px;
+  margin: auto;
+}
+
+.remove {
+  width: 22px;
+  height: 22px;
+  margin: auto;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer
+}
+
+.products {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
+  width: 40%;
+  height: 270px;
+  border-radius: 8px;
+  text-align: center;
+  color: black;
+  font-weight: 550;
+  margin-left: 20px;
+  margin-bottom: 15px;
+  vertical-align: top;
+  font-size: 15px;
+  display: inline-flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.quantity-info {
+  height: auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 10px;
+  background: transparent;
+}
+  
+/* Remove as setas do input number */
+input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        appearance: none;
+        margin: 0;
+    }
+
+
+#price {
+  margin-top: 30px;
+  font-size: 1.2rem;
+}
+
+.products input {
+  margin: 0;
+  text-align: center;
+  font-family: inherit;
+  width: 20%;
+  border: 0;
+  outline: 0;
+  font-size: 1.2rem;
+  color: rgb(0, 0, 0);
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+img {
+  height: 100px;
+  width: 100px;
+}

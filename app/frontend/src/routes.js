@@ -6,9 +6,10 @@ import {
   Routes as Switch,
   Navigate,
 } from 'react-router-dom';
-import Confirmation from './pages/confirmation/confirmation';
-import Login from './pages/login/index';
-import Register from './pages/register';
+import Confirmation from './pages/confirmation/Confirmation';
+import Login from './pages/login/Login';
+import Products from './pages/products/Products';
+import Register from './pages/register/Register';
 import PrivateRoute from './PrivateRoutes';
 
 // eslint-disable-next-line react/function-component-definition
@@ -22,7 +23,9 @@ const Routes = () => (
         exact
         path="/products"
         element={
-          <PrivateRoute>Você está logado na tela de produtos.</PrivateRoute>
+          <PrivateRoute>
+            <Products />
+          </PrivateRoute>
         }
       />
       <Route path="/confirmation/:token" element={ <Confirmation /> } />

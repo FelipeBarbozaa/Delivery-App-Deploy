@@ -1,0 +1,53 @@
+a {
+  color: #000000;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.header-container {
+  /* display: flex; */
+  top: 0;
+  width: 100%;
+}
+
+a:hover {
+  color: hsl(240, 2%, 50%);
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  background: #f4cc01;
+  height: 8vh;
+  width: 100%
+}
+
+.nav-list {
+  margin-right: 72px;
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  letter-spacing: 3px;
+  margin-left: 32px;
+  flex-direction: row;
+   /* justify-content não pega de jeito nenhum  */
+  width: 100%; 
+  align-items: center;
+}
+
+.button-header {
+  border-radius: 10px;
+  color: black;
+  width: 80px;
+  padding: 2px;
+  border-color: transparent;
+}
+
+.nav-list li {
+  width: auto;
+}
