@@ -1,0 +1,87 @@
+.finalizar-pedido-container h1 {
+  margin-bottom: 10px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.delivery-info {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.space {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#seller {
+  font-size: 0.8rem;
+}
+
+.input-vendedor-checkout {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 20ch;
+  border: 1px solid #ffffff;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: transparent;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+}
+
+.finalizar-pedido-container {
+  background-color: white;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 0.9em;
+  width: 98%;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.order-details h4 {
+  font-family: 'Chivo', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.order-details div div {
+  margin-top: 15px;
+}
+
+.preco-total {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+thead tr {
+  background-color: #eeeeee;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #b4b4b4;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #dbdada;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 1px solid black;
+}

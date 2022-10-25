@@ -1,0 +1,48 @@
+table {
+  border-collapse: collapse;
+  margin: 25px auto;
+  font-size: 0.9em;
+  width: 98%;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.15);
+}
+
+.order-details h4 {
+  font-family: 'Chivo', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.order-details div div {
+  margin-top: 15px;
+}
+
+.preco-total {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+thead tr {
+  background-color: #eeeeee;
+  color: black;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 1px solid #b4b4b4;
+}
+
+th, td {
+  padding: 12px 15px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #b4b4b4;
+}
+
+tbody tr:nth-of-type(even) {
+  background-color: #dbdada;
+}
+
+tbody tr:last-of-type {
+  border-bottom: 1px solid black;
+}

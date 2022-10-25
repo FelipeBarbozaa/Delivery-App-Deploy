@@ -6,6 +6,7 @@ import {
   Routes as Switch,
   Navigate,
 } from 'react-router-dom';
+import Checkout from './pages/checkout/Checkout';
 import Confirmation from './pages/confirmation/Confirmation';
 import Login from './pages/login/Login';
 import Products from './pages/products/Products';
@@ -25,6 +26,15 @@ const Routes = () => (
         element={
           <PrivateRoute>
             <Products />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/customer/checkout"
+        element={
+          <PrivateRoute>
+            <Checkout />
           </PrivateRoute>
         }
       />

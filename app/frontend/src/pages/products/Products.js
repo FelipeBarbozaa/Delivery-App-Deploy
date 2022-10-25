@@ -8,17 +8,29 @@ import './style.css';
 import appContext from '../../context/AppContext';
 
 export default function Products() {
-  let { productsData } = useContext(appContext);
+  let { productsData, prices } = useContext(appContext);
   const {
     setQuantityManual,
     onClickAddItem,
     onClickRemoveItem,
-    prices,
   } = useContext(appContext);
   const navigate = useNavigate();
+  const itens = localStorage.getItem('cart');
 
   if ('products' in localStorage) {
     productsData = JSON.parse(localStorage.getItem('products'));
+  }
+
+  if (prices !== '0,00') {
+    localStorage.setItem('prices', prices);
+  }
+
+  if (itens.length === 2) {
+    localStorage.setItem('prices', '0,00');
+  }
+
+  if ('prices' in localStorage) {
+    prices = localStorage.getItem('prices');
   }
 
   return (
