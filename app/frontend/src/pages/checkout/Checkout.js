@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import Header from '../../components/Header';
 import postSaleApi from '../../api/postSale';
+import postSaleProductApi from '../../api/postSaleProduct';
 import removeProduct from '../../images/removeProduct.png';
 import './style.css';
 
@@ -37,31 +38,31 @@ function Checkout() {
   }, [callback]);
 
   async function handleClickFinalizarPedido() {
-    const userInfo = JSON.parse(localStorage.getItem('user'));
     const productsInfo = JSON.parse(localStorage.getItem('cart'));
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
+    const userId = localStorage.getItem('id');
+
+    const sales = {
+      userId,
+      sellerId: 2,
+      totalPrice: price.toString(),
+      deliveryAddress: address.address,
+      deliveryNumber: address.number,
+      saleDate: moment().format('YYYY-MM-DD HH:mm:ss'),
+      status: 'Pendente',
+    };
+
+    const { id: saleId } = await postSaleApi(token, sales);
 
     const createSaleProductsBody = productsInfo.map(({ id, quantity }) => (
       {
+        saleId,
         productId: id,
         quantity,
       }
     ));
-
-    const createSaleBody = {
-      sales: {
-        userId: userInfo.id,
-        sellerId: 2,
-        totalPrice: price.toString(),
-        deliveryAddress: address.address,
-        deliveryNumber: address.number,
-        saleDate: moment().format('YYYY-MM-DD HH:mm:ss'),
-        status: 'Pendente',
-      },
-      salesProducts: createSaleProductsBody,
-    };
-    const id = await postSaleApi(token, createSaleBody);
-    navigate(`/customer/orders/${id}`, { replace: true });
+    await postSaleProductApi(token, createSaleProductsBody);
+    navigate(`/customer/orders/${saleId}`, { replace: true });
   }
 
   function handleClickRemoverItem(index) {

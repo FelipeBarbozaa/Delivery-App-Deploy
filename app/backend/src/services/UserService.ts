@@ -28,7 +28,7 @@ export default class UserService implements IUserService {
     const token = Token.createToken(
       {id, name, email, role, type: 'authentication' }
     );
-    return { token, name, role, email };
+    return { token, name, role, email, id };
   }
 
   async create(data: RegisterData): Promise<User | null> {

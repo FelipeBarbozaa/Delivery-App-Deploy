@@ -4,17 +4,20 @@ import cors from 'cors';
 import path from 'path';
 import userRouter from './routes/UserRouter';
 import productRouter from './routes/ProductRouter';
+import saleRouter from './routes/SaleRouter';
+import saleProductRouter from './routes/SaleProductRouter';
 import errorHandler from './middlewares/error';
 import Token from './token/generateJWT';
 
 const app = express();
-console.log(__dirname);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use('/', userRouter);
 app.use('/', productRouter);
+app.use('/', saleRouter);
+app.use('/', saleProductRouter);
 app.use('/images', express.static(path.join('public', 'images')));
 app.post('/validate', async (req, res, next) => {
   const { authorization } = req.headers;

@@ -25,8 +25,11 @@ export default function Products() {
     localStorage.setItem('prices', prices);
   }
 
-  if (itens.length === 2) {
-    localStorage.setItem('prices', '0,00');
+  // eslint-disable-next-line sonarjs/no-collapsible-if
+  if ('cart' in localStorage) {
+    if (itens.length === 2) {
+      localStorage.setItem('prices', '0,00');
+    }
   }
 
   if ('prices' in localStorage) {
