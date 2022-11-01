@@ -6,6 +6,12 @@ export default class SaleController {
 
   async create(req: Request, res: Response) {
     const result = await this.saleService.create(req.body);
-    res.status(201).json({ id: result});
+    return res.status(201).json({ id: result});
+  }
+
+  async getById(req: Request, res: Response) {
+    const { id } = req.params;
+    const result = await this.saleService.getById(parseInt(id, 10));
+    return res.status(200).json(result);
   }
 }

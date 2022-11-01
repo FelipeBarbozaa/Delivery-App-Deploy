@@ -172,7 +172,7 @@ function Checkout() {
             <span className="green">
               R$
               {' '}
-              { price.toString().replace('.', ',') }
+              { price.toFixed(2).toString().replace('.', ',') }
             </span>
           </h1>
           <div className="entrega-pedido-container">

@@ -7,4 +7,9 @@ export default class SaleService implements ISaleService {
     const result = await this.model.create(obj);
     return result;
   }
+
+  async getById(id: number): Promise<SaleData | null> {
+    const result = await this.model.getById(id);
+    return result;
+  }
 }

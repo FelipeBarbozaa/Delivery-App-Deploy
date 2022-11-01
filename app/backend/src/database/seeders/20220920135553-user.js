@@ -15,7 +15,7 @@ module.exports = {
         name: 'Náthaly Teixeira',
         email: 'nathaly@gmail.com',
         password: '25d55ad283aa400af464c76d713c07ad', // 12345678
-        role: 'customer',
+        role: 'seller',
         active: true
       },
       {
@@ -23,7 +23,7 @@ module.exports = {
         name: 'Lair Machado',
         email: 'lair@gmail.com',
         password: '25d55ad283aa400af464c76d713c07ad', // 12345678
-        role: 'seller',
+        role: 'customer',
         active: false,
       },
     ],

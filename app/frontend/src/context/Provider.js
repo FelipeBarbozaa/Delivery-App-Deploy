@@ -13,6 +13,7 @@ export default function Provider({ children }) {
     localStorage.setItem('token', userInfo.token);
     localStorage.setItem('name', userInfo.name);
     localStorage.setItem('email', userInfo.email);
+    localStorage.setItem('role', userInfo.role);
     localStorage.setItem('id', userInfo.id);
   };
 

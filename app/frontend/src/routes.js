@@ -9,6 +9,7 @@ import {
 import Checkout from './pages/checkout/Checkout';
 import Confirmation from './pages/confirmation/Confirmation';
 import Login from './pages/login/Login';
+import OrderDetails from './pages/orderDetails/OrderDetails';
 import Products from './pages/products/Products';
 import Register from './pages/register/Register';
 import PrivateRoute from './PrivateRoutes';
@@ -35,6 +36,15 @@ const Routes = () => (
         element={
           <PrivateRoute>
             <Checkout />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/customer/orders/:id"
+        element={
+          <PrivateRoute>
+            <OrderDetails />
           </PrivateRoute>
         }
       />

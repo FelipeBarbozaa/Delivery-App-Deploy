@@ -1,5 +1,6 @@
 import { Model, INTEGER, STRING, DECIMAL, DATE } from 'sequelize';
 import db from '.';
+import User from './User';
 
 class Sale extends Model {
   id!: number;
@@ -58,5 +59,8 @@ Sale.init({
   modelName: 'sales',
   timestamps: false
 });
+
+Sale.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+Sale.belongsTo(User, { foreignKey: 'sellerId', as: 'seller' });
 
 export default Sale;
