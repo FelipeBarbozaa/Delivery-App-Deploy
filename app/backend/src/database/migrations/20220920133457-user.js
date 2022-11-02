@@ -10,7 +10,7 @@ module.exports = {
       email: { allowNull: false, unique: true, type: Sequelize.STRING(100) },
       password: { allowNull: false, type: Sequelize.STRING(50) },
       role: { type: Sequelize.STRING(20), defaultValue: 'customer' },
-      active: { type: Sequelize.BOOLEAN, allowNull: false, defaultValue: false }
+      active: { type: Sequelize.BOOLEAN, allowNull: false }
     });
   },
   down: async (queryInterface) => {

@@ -18,4 +18,14 @@ export default class SaleRepository implements ISaleModel {
     }]});
     return result as unknown as SaleData;
   }
+
+  async getSalesByUserId(id: number): Promise<SaleData[] | null> {
+    const result = await this.saleModel.findAll({ where: { userId: id }});
+    return result;
+  }
+
+  async getAll(): Promise<SaleData[]> {
+    const result = await this.saleModel.findAll();
+    return result;
+  }
 }

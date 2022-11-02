@@ -9,7 +9,12 @@ router.post('/login', loginCredencials,
   (req, res) => UserFactory().login(req, res));
 router.post('/register', registerCredencials,
   (req, res) => UserFactory().create(req, res));
+router.post('/admin/register',
+  (req, res) => UserFactory().createByAdmin(req, res));
+router.delete('/admin/delete/:id',
+  (req, res) => UserFactory().remove(req, res));
 router.post('/confirmation/:token',
   (req, res) => UserFactory().emailConfirmation(req, res));
+router.get('/users', (req, res) => UserFactory().getAll(req, res));
 
 export default router;

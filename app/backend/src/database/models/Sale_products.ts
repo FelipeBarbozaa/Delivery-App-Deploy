@@ -1,5 +1,6 @@
 import { Model, INTEGER } from 'sequelize';
 import db from '.';
+import Product from './Product';
 
 class SaleProduct extends Model {
     saleId!: number;
@@ -29,5 +30,7 @@ sequelize: db,
 modelName: 'sales_products',
 timestamps: false
 });
+
+SaleProduct.belongsTo(Product, { foreignKey: 'productId' as 'product'});
 
 export default SaleProduct;

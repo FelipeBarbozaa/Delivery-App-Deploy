@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header';
 import './style.css';
-import getSalesByUserId from '../../api/salesByUserId';
+import getSalesByUserId from '../../api/getAllSales';
 
-function MyOrders() {
+function SellerOrders() {
   const EIGHT = 8;
   const TEN = 10;
   const [date, setdate] = useState([]);
@@ -12,9 +12,7 @@ function MyOrders() {
   useEffect(() => {
     const getSales = async () => {
       const token = localStorage.getItem('token');
-      const id = localStorage.getItem('id');
-
-      const sales = await getSalesByUserId(token, id);
+      const sales = await getSalesByUserId(token);
       const newDate = sales.map(({ saleDate }) => {
         const [date1, date2] = saleDate.split('-');
         const date3 = saleDate.slice(EIGHT, TEN);
@@ -41,7 +39,7 @@ function MyOrders() {
         <tbody className="table-principal">
           { allSales.map((sale, index) => (
             <tr key={ index }>
-              <td><a href={ `/customer/orders/${sale.id}` }>{ sale.id }</a></td>
+              <td><a href={ `/seller/orders/${sale.id}` }>{ sale.id }</a></td>
               <td>{ sale.status}</td>
               <td>{ date[index] }</td>
               <td>{ sale.totalPrice.replace('.', ',') }</td>
@@ -52,4 +50,4 @@ function MyOrders() {
     </div>
   );
 }
-export default MyOrders;
+export default SellerOrders;

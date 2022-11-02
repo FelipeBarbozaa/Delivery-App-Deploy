@@ -6,7 +6,7 @@ export type SaleData = {
   deliveryAddress: string;
   deliveryNumber: string;
   saleDate: Date;
-  seller: {
+  seller?: {
     name: string;
   }
 }
@@ -14,9 +14,13 @@ export type SaleData = {
 export interface ISaleModel {
   create(obj: SaleData): Promise<number>;
   getById(id: number): Promise<SaleData | null>;
+  getAll(): Promise<SaleData[]>;
+  getSalesByUserId(id: number): Promise<SaleData[] | null>;
 }
 
 export interface ISaleService {
   create(obj: SaleData): Promise<number>;
   getById(id: number): Promise<SaleData | null>;
+  getAll(): Promise<SaleData[]>;
+  getSalesByUserId(id: number): Promise<SaleData[] | null>;
 }

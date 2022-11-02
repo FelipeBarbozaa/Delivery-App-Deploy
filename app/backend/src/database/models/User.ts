@@ -36,8 +36,7 @@ User.init({
   },
   active: {
     type: BOOLEAN,
-    allowNull: false,
-    defaultValue: false
+    defaultValue: false,
   }
 }, {
   sequelize: db,

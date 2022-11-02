@@ -12,7 +12,7 @@ export default class UserController {
 
   async create(req: Request, res: Response) {
     const { name, email, password } = req.body;
-    await this.userService.create({ name, email, password});
+    await this.userService.create({ name, email, password });
     return res.status(201).json({ message: 'success' });
   }
 
@@ -22,5 +22,23 @@ export default class UserController {
     if (result) {
       return res.status(201).end();
     }
-  } 
+  }
+
+  async getAll(_req: Request, res: Response) {
+    const result = await this.userService.getAll();
+    return res.status(200).json(result);
+  }
+
+  async createByAdmin(req: Request, res: Response) {
+    const { name, email , password, role, active } = req.body;
+    await this.userService.createByAdmin(
+      { name, email, password, role, active });
+    return res.status(201).json({ message: 'user created successfully' });
+  }
+
+  async remove(req: Request, res: Response) {
+    const { id } = req.params;
+    await this.userService.remove(parseInt(id, 10));
+    return res.status(204).end();
+  }
 }

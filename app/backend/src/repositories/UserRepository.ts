@@ -23,4 +23,25 @@ export default class UserRepository implements IUserModel {
   async update(id: number): Promise<void> {
     await this.userModel.update({ active: 1}, { where: { id }});
   }
+
+  async getAll(): Promise<User[]> {
+    const result = await this.userModel.findAll();
+    return result;
+  }
+
+  async createByAdmin(data: RegisterData): Promise<void> {
+
+    const newData = {
+      name: data.name,
+      email: data.email,
+      password: md5(data.password),
+      role: data.role,
+      active: data.active,
+    };
+    await this.userModel.create(newData);
+  }
+
+  async remove(id: number): Promise<void> {
+    await this.userModel.destroy({ where: { id }});
+  }
 }

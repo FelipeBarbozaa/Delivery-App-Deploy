@@ -3,26 +3,42 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import getSaleById from '../../api/saleById';
+import getSaleDetails from '../../api/saleDetails';
 import './teste.css';
 
 function OrderDetails() {
   const EIGHT = 8;
   const TEN = 10;
-  const prices = localStorage.getItem('prices');
   const [disabled, setDisabled] = useState(false);
   const [date, setDate] = useState();
   const [sale, setSale] = useState([]);
-  const cart = JSON.parse(localStorage.getItem('cart'));
+  const [cart, setCart] = useState([]);
   const dataTest = 'customer_order_details__element-order-';
   const { id } = useParams();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
     const getSale = async () => {
-      const token = localStorage.getItem('token');
       const saleInfo = await getSaleById(token, id);
       return saleInfo;
     };
     getSale().then((response) => setSale(response));
+
+    const formater = (data) => {
+      const newData = {
+        name: data.product.name,
+        quantity: data.quantity,
+        price: data.product.price,
+      };
+      return newData;
+    };
+
+    const saleDetails = async () => {
+      const result = await getSaleDetails(token, id);
+      const data = result.map((e) => formater(e));
+      setCart(data);
+    };
+    saleDetails();
   }, [id]);
 
   useEffect(() => {
@@ -68,7 +84,7 @@ function OrderDetails() {
                 <span className="green">
                   R$
                   {' '}
-                  { prices.toString().replace('.', ',') }
+                  { sale.totalPrice }
                 </span>
               </h1>
             </div>

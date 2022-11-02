@@ -54,4 +54,22 @@ export default class UserService implements IUserService {
     }
     return false;
   }
+
+  async getAll(): Promise<User[]> {
+    const result = await this.model.getAll();
+    return result;
+  }
+
+  async createByAdmin(data: RegisterData): Promise<void> {
+    const { email } = data;
+    const emailExistsError = new Error(ErrorTypes.EmailExists);
+
+    const checkIfExists = await this.model.getByEmail(email);
+    if (checkIfExists) throw emailExistsError;
+    await this.model.createByAdmin(data);
+  }
+
+  async remove(id: number): Promise<void> {
+    await this.model.remove(id);
+  }
 }
