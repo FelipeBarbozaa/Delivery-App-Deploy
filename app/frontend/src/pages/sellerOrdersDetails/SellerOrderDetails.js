@@ -4,17 +4,16 @@ import { useParams } from 'react-router-dom';
 import Header from '../../components/Header';
 import getSaleById from '../../api/saleById';
 import getSaleDetails from '../../api/saleDetails';
-import './teste.css';
 import updateOrderStatus from '../../api/updateOrderStatus';
+import './teste.css';
 
-function OrderDetails() {
+function SellerOrderDetails() {
   const EIGHT = 8;
   const TEN = 10;
-  const [disabled, setDisabled] = useState(false);
-  const [callback, setCallback] = useState(0);
   const [date, setDate] = useState();
   const [sale, setSale] = useState([]);
   const [cart, setCart] = useState([]);
+  const [callback, setCallback] = useState(0);
   const dataTest = 'customer_order_details__element-order-';
   const { id } = useParams();
 
@@ -22,9 +21,6 @@ function OrderDetails() {
   useEffect(() => {
     const getSale = async () => {
       const saleInfo = await getSaleById(token, id);
-      if (saleInfo.status === 'Em Trânsito') {
-        setDisabled(true);
-      }
       return saleInfo;
     };
     getSale().then((response) => setSale(response));
@@ -55,7 +51,8 @@ function OrderDetails() {
   }, [sale]);
 
   const updateOrder = async () => {
-    await updateOrderStatus(token, id);
+    const result = await updateOrderStatus(token, id);
+    console.log(result);
     setCallback(callback + 1);
   };
 
@@ -77,6 +74,7 @@ function OrderDetails() {
                   className="order-status"
                 >
                   { `Status: ${sale.status}` }
+                  {/* disabled ? Entregue : pendente */}
                 </h4>
               </div>
               <h4>
@@ -152,18 +150,30 @@ function OrderDetails() {
               </tbody>
             </table>
           </div>
-          { sale.status !== 'Entregue' ? (
+          { sale.status === 'Pendente' ? (
             <button
               type="button"
               data-testid="customer_order_details__button-delivery-check"
-              onClick={ updateOrder }
-              disabled={ !disabled }
               className="btn draw-border"
+              onClick={ updateOrder }
             >
-              Marcar como entregue
+              Preparar pedido
             </button>
-          ) : null}
+          ) : null }
+          { sale.status === 'Preparando' ? (
+            <button
+              type="button"
+              data-testid="customer_order_details__button-delivery-check"
+              className="btn draw-border"
+              onClick={ updateOrder }
+            >
+              Saiu para entrega
+            </button>
+          ) : null }
+          { sale.status === 'Entregue' ? (
+            <p>O pedido foi entregue e confirmado pelo cliente!</p>
+          ) : null }
         </div>))
   );
 }
-export default OrderDetails;
+export default SellerOrderDetails;

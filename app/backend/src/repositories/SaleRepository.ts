@@ -10,7 +10,7 @@ export default class SaleRepository implements ISaleModel {
     return id;
   }
 
-  async getById(id: number): Promise<SaleData | null> {
+  async getById(id: number): Promise<SaleData> {
     const result = await this.saleModel.findOne({ where: { id }, include: [{
       model: User,
       as: 'seller',
@@ -27,5 +27,9 @@ export default class SaleRepository implements ISaleModel {
   async getAll(): Promise<SaleData[]> {
     const result = await this.saleModel.findAll();
     return result;
+  }
+
+  async update(id: number, status: string): Promise<void> {
+    await this.saleModel.update({ status }, { where: { id }});
   }
 }

@@ -4,7 +4,7 @@ import tryLogin from '../../api/login';
 import appContext from '../../context/AppContext';
 import loginLogo from '../../images/loginLogo.png';
 import { SIX } from '../../utils/numbers';
-import './main.css';
+import './login.css';
 
 export default function Login() {
   const [data, setData] = useState({});

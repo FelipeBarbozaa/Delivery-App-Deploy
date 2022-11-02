@@ -9,12 +9,14 @@ import {
 import Checkout from './pages/checkout/Checkout';
 import Confirmation from './pages/confirmation/Confirmation';
 import Login from './pages/login/Login';
+import Admin from './pages/admin/Admin';
 import MyOrders from './pages/myOrders/myOrders';
 import OrderDetails from './pages/orderDetails/OrderDetails';
 import Products from './pages/products/Products';
 import Register from './pages/register/Register';
 import SellerOrders from './pages/sellerOrders/SellerOrders';
 import PrivateRoute from './PrivateRoutes';
+import SellerOrderDetails from './pages/sellerOrdersDetails/SellerOrderDetails';
 
 // eslint-disable-next-line react/function-component-definition
 const Routes = () => (
@@ -65,6 +67,24 @@ const Routes = () => (
         element={
           <PrivateRoute>
             <MyOrders />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/admin/manage"
+        element={
+          <PrivateRoute>
+            <Admin />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/seller/orders/:id"
+        element={
+          <PrivateRoute>
+            <SellerOrderDetails />
           </PrivateRoute>
         }
       />

@@ -8,7 +8,7 @@ export default class SaleService implements ISaleService {
     return result;
   }
 
-  async getById(id: number): Promise<SaleData | null> {
+  async getById(id: number): Promise<SaleData> {
     const result = await this.model.getById(id);
     return result;
   }
@@ -21,5 +21,23 @@ export default class SaleService implements ISaleService {
   async getAll(): Promise<SaleData[]> {
     const result = await this.model.getAll();
     return result;
+  }
+
+  async update(id: number): Promise<void> {
+    const { status: orderStatus} = await this.getById(id);
+    type ObjectType = {
+      Pendente: string;
+      Preparando: string;
+      'Em Trânsito': string;
+    }
+  
+    const changeValue: ObjectType = {
+      Pendente: 'Preparando',
+      Preparando: 'Em Trânsito',
+      'Em Trânsito': 'Entregue',
+    };
+
+    const newStatus = changeValue[orderStatus as keyof typeof changeValue];
+    await this.model.update(id, newStatus);
   }
 }
