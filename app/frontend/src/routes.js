@@ -27,7 +27,7 @@ const Routes = () => (
       <Route exact path="/register" element={ <Register /> } />
       <Route
         exact
-        path="/products"
+        path="/customer/products"
         element={
           <PrivateRoute>
             <Products />

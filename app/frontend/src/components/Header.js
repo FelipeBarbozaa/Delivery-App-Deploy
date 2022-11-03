@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './style.css';
 
-function Header({ initialName }) {
+function Header() {
   const role = localStorage.getItem('role');
 
   const customer = (
     <>
       <li>
         <a
-          href="/login"
+          href="/customer/products"
           className="button-header"
           type="button"
           data-testid="customer_products__element-navbar-link-products"
@@ -27,40 +26,33 @@ function Header({ initialName }) {
           Pedidos
         </a>
       </li>
-      <li><a href="/">{ initialName }</a></li>
     </>
   );
 
   const seller = (
-    <>
-      <li>
-        <a
-          href="/seller/orders"
-          className="button-header"
-          type="button"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          Pedidos
-        </a>
-      </li>
-      <li><a href="/">{ initialName }</a></li>
-    </>
+    <li>
+      <a
+        href="/seller/orders"
+        className="button-header"
+        type="button"
+        data-testid="customer_products__element-navbar-link-orders"
+      >
+        Pedidos
+      </a>
+    </li>
   );
 
   const administrator = (
-    <>
-      <li>
-        <a
-          href="/admin/manage"
-          className="button-header"
-          type="button"
-          data-testid="customer_products__element-navbar-link-orders"
-        >
-          Gerenciar
-        </a>
-      </li>
-      <li><a href="/">{ initialName }</a></li>
-    </>
+    <li>
+      <a
+        href="/admin/manage"
+        className="button-header"
+        type="button"
+        data-testid="customer_products__element-navbar-link-orders"
+      >
+        Gerenciar
+      </a>
+    </li>
   );
 
   return (
@@ -86,9 +78,5 @@ function Header({ initialName }) {
     </header>
   );
 }
-
-Header.propTypes = {
-  initialName: PropTypes.string.isRequired,
-};
 
 export default Header;

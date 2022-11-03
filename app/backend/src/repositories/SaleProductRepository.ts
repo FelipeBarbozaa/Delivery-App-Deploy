@@ -6,9 +6,10 @@ export default class SaleProductRepository implements ISaleProductModel {
   constructor(private saleProductModel = SaleProduct) {}
 
   async create(array: SaleProductType[]): Promise<void> {
-    array.map(async (data) => {
+    const result = array.map(async (data) => {
       await this.saleProductModel.create(data);
     });
+    await Promise.all(result);
   }
 
   async getBySaleId(id: number): Promise<SaleProductType[] | null> {

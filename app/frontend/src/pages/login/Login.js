@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import tryLogin from '../../api/login';
 import appContext from '../../context/AppContext';
 import loginLogo from '../../images/loginLogo.png';
-import { SIX } from '../../utils/numbers';
+import validateToken from '../../api/validateToken';
+import { SIX, TWO_HUNDRED_AND_ONE } from '../../utils/numbers';
 import './login.css';
 
 export default function Login() {
@@ -14,6 +15,26 @@ export default function Login() {
   const { email, password } = data;
 
   const { saveUserInfo } = useContext(appContext);
+
+  useEffect(() => {
+    const role = localStorage.getItem('role');
+    const token = localStorage.getItem('token');
+    const validate = async () => {
+      const response = await validateToken(token);
+      if (response.status === TWO_HUNDRED_AND_ONE && role === 'customer') {
+        navigate('/customer/products');
+      }
+
+      if (response.status === TWO_HUNDRED_AND_ONE && token && role === 'seller') {
+        navigate('/seller/orders');
+      }
+
+      if (response.status === TWO_HUNDRED_AND_ONE && token && role === 'administrator') {
+        navigate('/admin/manage');
+      }
+    };
+    validate();
+  }, [navigate]);
 
   const handleInput = ({ target: { name, value } }) => {
     setData({ ...data, [name]: value });
@@ -27,7 +48,13 @@ export default function Login() {
 
     if (response.token) {
       saveUserInfo(response);
-      navigate('/products');
+      if (response.role === 'customer') {
+        navigate('/customer/products');
+      } else if (response.role === 'seller') {
+        navigate('/seller/orders');
+      } else {
+        navigate('/admin/manage');
+      }
     }
   };
 
