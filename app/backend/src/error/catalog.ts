@@ -1,7 +1,8 @@
 export enum ErrorTypes {
   InvalidLogin = 'InvalidLogin',
   Inactive = 'Inactive',
-  EmailExists = 'EmailExists'
+  EmailExists = 'EmailExists',
+  UserExists = 'UserExists'
 }
 
 type ErrorResponseObject = { 
@@ -24,6 +25,10 @@ export const errorCatalog: ErrorCatalog = {
   },
   EmailExists: {
     error: 'Email already exists',
+    httpStatus: 409,
+  },
+  UserExists: {
+    error: 'User already exists',
     httpStatus: 409,
   }
 };

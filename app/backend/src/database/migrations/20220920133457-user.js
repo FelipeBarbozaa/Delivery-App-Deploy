@@ -6,7 +6,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,type:
         Sequelize.INTEGER },
-      name: { allowNull: false, type: Sequelize.STRING(50) },
+      name: { allowNull: false, unique: true, type: Sequelize.STRING(50) },
       email: { allowNull: false, unique: true, type: Sequelize.STRING(100) },
       password: { allowNull: false, type: Sequelize.STRING(50) },
       role: { type: Sequelize.STRING(20), defaultValue: 'customer' },

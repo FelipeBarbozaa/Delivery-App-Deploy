@@ -32,11 +32,15 @@ export default class UserService implements IUserService {
   }
 
   async create(data: RegisterData): Promise<User | null> {
-    const { email } = data;
+    const { email, name } = data;
     const emailExistsError = new Error(ErrorTypes.EmailExists);
+    const userExistsError = new Error(ErrorTypes.UserExists);
 
-    const checkIfExists = await this.model.getByEmail(email);
-    if (checkIfExists) throw emailExistsError;
+    const checkIfNameExists = await this.model.getByName(name);
+    if (checkIfNameExists) throw userExistsError;
+
+    const checkifEmailExists = await this.model.getByEmail(email);
+    if (checkifEmailExists) throw emailExistsError;
 
     const result = await this.model.create(data);
     if (result) {

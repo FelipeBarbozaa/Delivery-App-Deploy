@@ -20,6 +20,7 @@ User.init({
   name: {
     type: STRING(50),
     allowNull: false,
+    unique: true,
   },
   email: {
     type: STRING(100),

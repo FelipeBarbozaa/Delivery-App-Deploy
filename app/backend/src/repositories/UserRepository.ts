@@ -10,6 +10,11 @@ export default class UserRepository implements IUserModel {
     return result;
   }
 
+  async getByName(name: string): Promise<User | null> {
+    const result = await this.userModel.findOne({ where: { name }});
+    return result;
+  }
+
   async create(data: RegisterData): Promise<User | null> {
     const newData = {
       name: data.name,

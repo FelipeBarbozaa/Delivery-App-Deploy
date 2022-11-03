@@ -16,20 +16,21 @@ export default function Register() {
 
   const register = async () => {
     const result = await tryRegister({ name: nameReg, email, password });
+    console.log(result);
     if (result.message === 'success') {
       setError({ success: true,
         message: `Account created successfully! Activate
         using the link sent to your email`,
       });
-    }
-    if (result.error.match('exists')) {
+    } else if (result.error.match('User')) {
+      setError({ active: true, message: 'User already exists' });
+    } else if (result.error.match('Email')) {
       setError({ active: true, message: 'Email already exists' });
     }
   };
 
   useEffect(() => {
     const { error: joiError } = userRegisterSchema.validate(data);
-    console.log(joiError);
     if (joiError) {
       setError({ active: true, message: joiError.message });
     } else {
