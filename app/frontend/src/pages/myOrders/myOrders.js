@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import './style.css';
 import getSalesByUserId from '../../api/salesByUserId';
@@ -8,6 +9,7 @@ function MyOrders() {
   const TEN = 10;
   const [date, setdate] = useState([]);
   const [allSales, setAllSales] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSales = async () => {
@@ -26,9 +28,14 @@ function MyOrders() {
     getSales().then((response) => setAllSales(response));
   }, []);
 
+  const redirectToOrder = (id) => {
+    navigate(`/customer/orders/${id}`);
+  };
+
   return (
     <div className="meus-pedidos-container">
       <Header initialName="Felipe Barboza" />
+      <br />
       <table>
         <thead>
           <tr className="cabecalho-table-container">
@@ -38,10 +45,10 @@ function MyOrders() {
             <th>Valor</th>
           </tr>
         </thead>
-        <tbody className="table-principal">
+        <tbody id="teste" className="table-principal">
           { allSales.map((sale, index) => (
-            <tr key={ index }>
-              <td><a href={ `/customer/orders/${sale.id}` }>{ sale.id }</a></td>
+            <tr onClick={ () => redirectToOrder(sale.id) } key={ index }>
+              <td id="space">{ sale.id }</td>
               <td>{ sale.status}</td>
               <td>{ date[index] }</td>
               <td>{ sale.totalPrice.replace('.', ',') }</td>

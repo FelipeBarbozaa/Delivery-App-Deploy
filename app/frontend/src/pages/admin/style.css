@@ -6,3 +6,13 @@
   width: 27px;
   height: 27px;
 }
+
+#letter2 {
+  font-size: 0.9rem;
+}
+
+#teste3 {
+  max-width: 150px;
+  padding-right: 15px;
+  word-wrap: break-word;
+}

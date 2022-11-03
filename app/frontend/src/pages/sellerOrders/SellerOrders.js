@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import './style.css';
 import getSalesByUserId from '../../api/getAllSales';
@@ -8,6 +9,7 @@ function SellerOrders() {
   const TEN = 10;
   const [date, setdate] = useState([]);
   const [allSales, setAllSales] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getSales = async () => {
@@ -24,6 +26,10 @@ function SellerOrders() {
     getSales().then((response) => setAllSales(response));
   }, []);
 
+  const redirectToOrder = (id) => {
+    navigate(`/seller/orders/${id}`);
+  };
+
   return (
     <div className="meus-pedidos-container">
       <Header initialName="Felipe Barboza" />
@@ -38,8 +44,8 @@ function SellerOrders() {
         </thead>
         <tbody className="table-principal">
           { allSales.map((sale, index) => (
-            <tr key={ index }>
-              <td><a href={ `/seller/orders/${sale.id}` }>{ sale.id }</a></td>
+            <tr onClick={ () => redirectToOrder(sale.id) } key={ index }>
+              <td id="space">{ sale.id }</td>
               <td>{ sale.status}</td>
               <td>{ date[index] }</td>
               <td>{ sale.totalPrice.replace('.', ',') }</td>

@@ -4,7 +4,7 @@ import tryLogin from '../../api/login';
 import appContext from '../../context/AppContext';
 import loginLogo from '../../images/loginLogo.png';
 import validateToken from '../../api/validateToken';
-import { SIX, TWO_HUNDRED_AND_ONE } from '../../utils/numbers';
+import { SIX } from '../../utils/numbers';
 import './login.css';
 
 export default function Login() {
@@ -21,15 +21,15 @@ export default function Login() {
     const token = localStorage.getItem('token');
     const validate = async () => {
       const response = await validateToken(token);
-      if (response.status === TWO_HUNDRED_AND_ONE && role === 'customer') {
+      if (response.result === true && role === 'customer') {
         navigate('/customer/products');
       }
 
-      if (response.status === TWO_HUNDRED_AND_ONE && token && role === 'seller') {
+      if (response.result === true && token && role === 'seller') {
         navigate('/seller/orders');
       }
 
-      if (response.status === TWO_HUNDRED_AND_ONE && token && role === 'administrator') {
+      if (response.result === true && token && role === 'administrator') {
         navigate('/admin/manage');
       }
     };

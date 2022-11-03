@@ -24,7 +24,7 @@ app.post('/validate', async (req, res, next) => {
   try {
     const response = Token.validateToken(authorization as string);
     if (response && response.type === 'authentication') {
-      return res.status(201).end();
+      return res.status(200).json({ result: true, role: response.role });
     }
     return res.status(500).end();
   } catch (error) {

@@ -94,25 +94,28 @@ function Admin() {
           CADASTRAR
         </button>
       </div>
+      <br />
       {users.length === 0 ? null : (
-        <table border="1">
-          <thead>
+        <table className="details-content-table">
+          <thead className="thead-order-details">
             <tr>
-              <th>Item</th>
+              <th>Id</th>
               <th>E-mail</th>
-              <th>Tipo</th>
-              <th>Excluir</th>
+              <th>Role</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={ user.id }>
+              <tr id="letter2" key={ user.id }>
                 <td
+                  width="40"
                   data-testid={ `admin_manage__element-user-table-item-number-${index}` }
                 >
                   {index + 1}
                 </td>
                 <td
+                  id="teste3"
                   data-testid={ `admin_manage__element-user-table-email-${index}` }
                 >
                   {user.email}

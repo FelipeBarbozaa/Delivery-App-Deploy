@@ -13,6 +13,14 @@
   padding: 10px;
 }
 
+#space {
+  width: 60px;
+}
+
+#teste {
+  cursor: pointer;
+}
+
 #a {
   text-align: left;
 }

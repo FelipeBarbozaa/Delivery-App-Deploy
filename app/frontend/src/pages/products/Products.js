@@ -36,6 +36,12 @@ export default function Products() {
     prices = localStorage.getItem('prices');
   }
 
+  const finishOrder = () => {
+    navigate('/customer/checkout');
+    localStorage.removeItem('products');
+    localStorage.removeItem('prices');
+  };
+
   return (
     (productsData.length === 0 ? null
       : (
@@ -89,9 +95,8 @@ export default function Products() {
               </div>
             ))}
           </div>
-          <section>
+          <section id="total">
             <p
-              id="total"
               data-testid="customer_products__checkout-bottom-value"
             >
               { `Total do pedido: R$ ${prices}` }
@@ -100,7 +105,7 @@ export default function Products() {
               data-testid="customer_products__button-cart"
               type="button"
               className="buttonVerCarrinho"
-              onClick={ () => navigate('/customer/checkout') }
+              onClick={ finishOrder }
               disabled={ prices === '0,00' }
             >
               <img

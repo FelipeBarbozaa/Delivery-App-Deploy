@@ -58,9 +58,6 @@ function Header() {
   return (
     <header className="header-container">
       <nav>
-        <div className="line1" />
-        <div className="line2" />
-        <div className="line3" />
         <ul className="nav-list">
           { role === 'customer' ? customer : null }
           { role === 'seller' ? seller : null }

@@ -18,9 +18,10 @@ export default function Provider({ children }) {
   };
 
   useEffect(() => {
-    if (user) {
+    const token = localStorage.getItem('token');
+    if (token) {
       const fetchApi = async () => {
-        const response = await getProducts(user);
+        const response = await getProducts(token);
         return response;
       };
       if ('products' in localStorage) {

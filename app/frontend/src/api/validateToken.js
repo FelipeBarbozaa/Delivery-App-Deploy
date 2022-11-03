@@ -8,5 +8,5 @@ export default async function validateToken(token) {
   };
 
   const response = await fetch('http://localhost:3001/validate', requestOptions);
-  return response;
+  return response.json();
 }

@@ -6,17 +6,17 @@ import {
   Routes as Switch,
   Navigate,
 } from 'react-router-dom';
-import Checkout from './pages/checkout/Checkout';
-import Confirmation from './pages/confirmation/Confirmation';
-import Login from './pages/login/Login';
-import Admin from './pages/admin/Admin';
-import MyOrders from './pages/myOrders/myOrders';
-import OrderDetails from './pages/orderDetails/OrderDetails';
-import Products from './pages/products/Products';
-import Register from './pages/register/Register';
-import SellerOrders from './pages/sellerOrders/SellerOrders';
+import Checkout from '../pages/checkout/Checkout';
+import Confirmation from '../pages/confirmation/Confirmation';
+import Login from '../pages/login/Login';
+import Admin from '../pages/admin/Admin';
+import MyOrders from '../pages/myOrders/myOrders';
+import OrderDetails from '../pages/orderDetails/OrderDetails';
+import Products from '../pages/products/Products';
+import Register from '../pages/register/Register';
+import SellerOrders from '../pages/sellerOrders/SellerOrders';
 import PrivateRoute from './PrivateRoutes';
-import SellerOrderDetails from './pages/sellerOrdersDetails/SellerOrderDetails';
+import SellerOrderDetails from '../pages/sellerOrdersDetails/SellerOrderDetails';
 
 // eslint-disable-next-line react/function-component-definition
 const Routes = () => (
@@ -29,7 +29,7 @@ const Routes = () => (
         exact
         path="/customer/products"
         element={
-          <PrivateRoute>
+          <PrivateRoute type="customer">
             <Products />
           </PrivateRoute>
         }
@@ -38,7 +38,7 @@ const Routes = () => (
         exact
         path="/customer/checkout"
         element={
-          <PrivateRoute>
+          <PrivateRoute type="customer">
             <Checkout />
           </PrivateRoute>
         }
@@ -47,17 +47,8 @@ const Routes = () => (
         exact
         path="/customer/orders/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute type="customer">
             <OrderDetails />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        exact
-        path="/seller/orders"
-        element={
-          <PrivateRoute>
-            <SellerOrders />
           </PrivateRoute>
         }
       />
@@ -65,17 +56,17 @@ const Routes = () => (
         exact
         path="/customer/orders"
         element={
-          <PrivateRoute>
+          <PrivateRoute type="customer">
             <MyOrders />
           </PrivateRoute>
         }
       />
       <Route
         exact
-        path="/admin/manage"
+        path="/seller/orders"
         element={
-          <PrivateRoute>
-            <Admin />
+          <PrivateRoute type="seller">
+            <SellerOrders />
           </PrivateRoute>
         }
       />
@@ -83,8 +74,17 @@ const Routes = () => (
         exact
         path="/seller/orders/:id"
         element={
-          <PrivateRoute>
+          <PrivateRoute type="seller">
             <SellerOrderDetails />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        exact
+        path="/admin/manage"
+        element={
+          <PrivateRoute type="administrator">
+            <Admin />
           </PrivateRoute>
         }
       />

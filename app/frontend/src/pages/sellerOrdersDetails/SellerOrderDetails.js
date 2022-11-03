@@ -94,15 +94,16 @@ function SellerOrderDetails() {
                   { sale.totalPrice }
                 </span>
               </h1>
+              <br />
             </div>
             <table className="details-content-table">
               <thead className="thead-order-details">
                 <tr>
                   <th>Item</th>
-                  <th>Descrição</th>
-                  <th>Quantidade</th>
-                  <th>Valor</th>
-                  <th>Sub.total</th>
+                  <th>Desc.</th>
+                  <th>Quant.</th>
+                  <th>Price</th>
+                  <th>Total</th>
                 </tr>
               </thead>
               <tbody>
@@ -111,6 +112,7 @@ function SellerOrderDetails() {
                     key={ item.name }
                   >
                     <td
+                      width="50"
                       data-testid={
                         `customer_order_details__element-order-table-item-number-${index}`
                       }
@@ -118,6 +120,7 @@ function SellerOrderDetails() {
                       {index + 1}
                     </td>
                     <td
+                      width="140"
                       data-testid={
                         `customer_order_details__element-order-table-name-${index}`
                       }
@@ -150,6 +153,7 @@ function SellerOrderDetails() {
               </tbody>
             </table>
           </div>
+          <br />
           { sale.status === 'Pendente' ? (
             <button
               type="button"

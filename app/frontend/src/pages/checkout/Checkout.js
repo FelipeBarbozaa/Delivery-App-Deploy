@@ -17,9 +17,8 @@ function Checkout() {
 
   const dropdown = [
     'Freddie Mercury',
-    'Seu Jorge',
     'Felipe Barboza',
-    'Gabriel Machado',
+    'Seu Jorge',
   ];
   const option = (
     dropdown.map((item, index) => (
@@ -89,20 +88,22 @@ function Checkout() {
       : (
         <div className="finalizar-pedido-container">
           <Header initialName="Felipe" />
+          <br />
           <table>
             <thead>
               <tr className="cabecalho-table-container">
                 <th>Item</th>
-                <th>Descrição</th>
+                <th width="50" id="limit">Desc.</th>
                 <th>Quant.</th>
-                <th>Valor</th>
-                <th>Sub.total</th>
-                <th>Remover</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Remove</th>
               </tr>
             </thead>
             <tbody className="table-principal">
               {cartProducts.map((item, index) => (
                 <tr
+                  id="letter"
                   key={ item.name }
                 >
                   <td
@@ -113,6 +114,7 @@ function Checkout() {
                     {index + 1}
                   </td>
                   <td
+                    id="teste4"
                     data-testid={
                       `customer_checkout__element-order-table-name-${index}`
                     }
@@ -128,6 +130,7 @@ function Checkout() {
                     {item.quantity}
                   </td>
                   <td
+                    id="teste5"
                     data-testid={
                       `customer_checkout__element-order-table-unit-price-${index}`
                     }
@@ -135,6 +138,7 @@ function Checkout() {
                     { `R$${item.price.replace('.', ',')}` }
                   </td>
                   <td
+                    id="teste5"
                     data-testid={
                       `customer_checkout__element-order-table-sub-total-${index}`
                     }

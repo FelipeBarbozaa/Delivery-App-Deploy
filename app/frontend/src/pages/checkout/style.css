@@ -10,12 +10,25 @@
   margin-bottom: 10px;
 }
 
+#teste4 {
+  max-width: 70px;
+  word-wrap: break-word;
+}
+
+#teste5 {
+  padding-right: 10px;
+}
+
 .space {
   margin-right: 10px;
   margin-left: 10px;
 }
 
 #seller {
+  font-size: 0.8rem;
+}
+
+#letter {
   font-size: 0.8rem;
 }
 
