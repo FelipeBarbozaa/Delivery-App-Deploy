@@ -18,8 +18,8 @@ export default class SaleService implements ISaleService {
     return result;
   }
 
-  async getAll(): Promise<SaleData[]> {
-    const result = await this.model.getAll();
+  async getSalesBySellerId(id: number): Promise<SaleData[]> {
+    const result = await this.model.getSalesBySellerId(id);
     return result;
   }
 

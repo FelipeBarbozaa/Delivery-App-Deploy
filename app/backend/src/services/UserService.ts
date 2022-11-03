@@ -36,7 +36,7 @@ export default class UserService implements IUserService {
     const emailExistsError = new Error(ErrorTypes.EmailExists);
     const userExistsError = new Error(ErrorTypes.UserExists);
 
-    const checkIfNameExists = await this.model.getByName(name);
+    const checkIfNameExists = await this.model.getIdByName(name);
     if (checkIfNameExists) throw userExistsError;
 
     const checkifEmailExists = await this.model.getByEmail(email);
@@ -75,5 +75,15 @@ export default class UserService implements IUserService {
 
   async remove(id: number): Promise<void> {
     await this.model.remove(id);
+  }
+
+  async getSellers(): Promise<User[]> {
+    const result = await this.model.getSellers();
+    return result;
+  }
+
+  async getIdByName(name: string): Promise<number | null> {
+    const result = await this.model.getIdByName(name);
+    return result;
   }
 }

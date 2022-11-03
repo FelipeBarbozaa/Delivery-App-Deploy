@@ -15,14 +15,14 @@ export interface ISaleModel {
   create(obj: SaleData): Promise<number>;
   getById(id: number): Promise<SaleData>;
   update(id: number, status: string): Promise<void>;
-  getAll(): Promise<SaleData[]>;
+  getSalesBySellerId(id: number): Promise<SaleData[]>;
   getSalesByUserId(id: number): Promise<SaleData[] | null>;
 }
 
 export interface ISaleService {
   create(obj: SaleData): Promise<number>;
   getById(id: number): Promise<SaleData>;
-  getAll(): Promise<SaleData[]>;
+  getSalesBySellerId(id: number): Promise<SaleData[]>;
   update(id: number, status: string): Promise<void>;
   getSalesByUserId(id: number): Promise<SaleData[] | null>;
 }

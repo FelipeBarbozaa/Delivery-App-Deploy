@@ -10,7 +10,8 @@ export type RegisterData = {
 
 export interface IUserModel {
   getByEmail(email: string): Promise <User | null>;
-  getByName(name: string): Promise <User | null>;
+  getIdByName(name: string): Promise<number | null>;
+  getSellers(): Promise <User[]>;
   create(data: RegisterData): Promise <User | null>;
   createByAdmin(data: RegisterData): Promise <void>;
   remove(id: number): Promise<void>;
@@ -25,6 +26,8 @@ export interface IUserLoginRequest {
 
 export interface IUserService {
   tryLogin(data: IUserLoginRequest): Promise<object>;
+  getSellers(): Promise <User[]>;
+  getIdByName(name: string):Promise <number | null>;
   create(data: RegisterData): Promise <User | null>;
   createByAdmin(data: RegisterData): Promise <void>;
   remove(id: number): Promise<void>;

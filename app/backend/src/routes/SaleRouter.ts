@@ -10,7 +10,7 @@ router.get('/saleById/:id', validateRouteToken,
   (req, res) => SaleFactory().getById(req, res));
 router.get('/sales/:id', validateRouteToken,
   (req, res) => SaleFactory().getSaleByUserId(req, res));
-router.get('/sales', validateRouteToken, 
+router.get('/salesBySellerId/:id', validateRouteToken, 
   (req, res) => SaleFactory().getAll(req, res));
 router.patch('/sales/:id', validateRouteToken, 
   (req, res) => SaleFactory().update(req, res));

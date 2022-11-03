@@ -1,4 +1,4 @@
-export default async function getSalesByUserId(token) {
+export default async function getSalesBySellerId(token, id) {
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -7,7 +7,7 @@ export default async function getSalesByUserId(token) {
     },
   };
 
-  const response = await fetch('http://localhost:3001/sales/', requestOptions);
+  const response = await fetch(`http://localhost:3001/salesBySellerId/${id}`, requestOptions);
   const result = await response.json();
 
   return result;

@@ -41,4 +41,15 @@ export default class UserController {
     await this.userService.remove(parseInt(id, 10));
     return res.status(204).end();
   }
+
+  async getSellers(req: Request, res: Response) {
+    const result = await this.userService.getSellers();
+    return res.status(200).json(result);
+  }
+
+  async getIdByName(req: Request, res: Response) {
+    const { name } = req.headers;
+    const result = await this.userService.getIdByName(name as string);
+    return res.status(200).json(result);
+  }
 }

@@ -24,8 +24,8 @@ export default class SaleRepository implements ISaleModel {
     return result;
   }
 
-  async getAll(): Promise<SaleData[]> {
-    const result = await this.saleModel.findAll();
+  async getSalesBySellerId(id: number): Promise<SaleData[]> {
+    const result = await this.saleModel.findAll({ where: { sellerId: id }});
     return result;
   }
 

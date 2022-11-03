@@ -10,9 +10,11 @@ export default class UserRepository implements IUserModel {
     return result;
   }
 
-  async getByName(name: string): Promise<User | null> {
-    const result = await this.userModel.findOne({ where: { name }});
-    return result;
+  async getIdByName(name: string): Promise<number | null> {
+    const result = await this.userModel.findOne({ where: { name },
+      attributes: { exclude: ['name', 'email', 'password', 'role', 'active']}
+    });
+    return result as unknown as number;
   }
 
   async create(data: RegisterData): Promise<User | null> {
@@ -48,5 +50,12 @@ export default class UserRepository implements IUserModel {
 
   async remove(id: number): Promise<void> {
     await this.userModel.destroy({ where: { id }});
+  }
+
+  async getSellers(): Promise<User[]> {
+    const result = await this.userModel.findAll({ where: { role: 'seller' },
+    attributes: { exclude: ['id', 'email', 'password', 'role', 'active']}  
+  });
+    return result;
   }
 }

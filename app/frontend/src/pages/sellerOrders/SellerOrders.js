@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../../components/Header';
 import './style.css';
-import getSalesByUserId from '../../api/getAllSales';
+import getSalesBySellerId from '../../api/getSalesBySellerId';
 
 function SellerOrders() {
   const EIGHT = 8;
@@ -10,11 +10,12 @@ function SellerOrders() {
   const [date, setdate] = useState([]);
   const [allSales, setAllSales] = useState([]);
   const navigate = useNavigate();
+  const id = localStorage.getItem('id');
 
   useEffect(() => {
     const getSales = async () => {
       const token = localStorage.getItem('token');
-      const sales = await getSalesByUserId(token);
+      const sales = await getSalesBySellerId(token, id);
       const newDate = sales.map(({ saleDate }) => {
         const [date1, date2] = saleDate.split('-');
         const date3 = saleDate.slice(EIGHT, TEN);
@@ -24,10 +25,11 @@ function SellerOrders() {
       return sales;
     };
     getSales().then((response) => setAllSales(response));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const redirectToOrder = (id) => {
-    navigate(`/seller/orders/${id}`);
+  const redirectToOrder = (orderId) => {
+    navigate(`/seller/orders/${orderId}`);
   };
 
   return (

@@ -22,7 +22,8 @@ export default class SaleController {
   }
 
   async getAll(req: Request, res: Response) {
-    const result = await this.saleService.getAll();
+    const { id } = req.params;
+    const result = await this.saleService.getSalesBySellerId(parseInt(id, 10));
     return res.status(200).json(result);
   }
 
