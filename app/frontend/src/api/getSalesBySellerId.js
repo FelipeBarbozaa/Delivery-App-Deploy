@@ -7,7 +7,7 @@ export default async function getSalesBySellerId(token, id) {
     },
   };
 
-  const response = await fetch(`http://localhost:3001/salesBySellerId/${id}`, requestOptions);
+  const response = await fetch(`https://delivery-app-deploy-production.up.railway.app/salesBySellerId/${id}`, requestOptions);
   const result = await response.json();
 
   return result;
