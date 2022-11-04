@@ -16,7 +16,6 @@ export default function Register() {
 
   const register = async () => {
     const result = await tryRegister({ name: nameReg, email, password });
-    console.log(result);
     if (result.message === 'success') {
       setError({ success: true,
         message: `Account created successfully! Activate
@@ -34,6 +33,9 @@ export default function Register() {
     if (joiError) {
       setError({ active: true, message: joiError.message });
     } else {
+      setError({ active: false });
+    }
+    if (joiError && joiError.message.match('required')) {
       setError({ active: false });
     }
     if (nameReg && email && password && !joiError) {

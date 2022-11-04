@@ -60,7 +60,7 @@ function SellerOrderDetails() {
     (sale.length === 0 ? <h1>Nenhum pedido encontrado</h1>
       : (
         <div className="details">
-          <Header initialName="Felipe" />
+          <Header />
           <div className="order-details">
             <div>
               <div>
@@ -112,7 +112,7 @@ function SellerOrderDetails() {
                     key={ item.name }
                   >
                     <td
-                      width="50"
+                      width="40"
                       data-testid={
                         `customer_order_details__element-order-table-item-number-${index}`
                       }
@@ -128,6 +128,7 @@ function SellerOrderDetails() {
                       {item.name}
                     </td>
                     <td
+                      width="60"
                       data-testid={
                         `customer_order_details__element-order-table-quantity-${index}`
                       }
@@ -135,6 +136,7 @@ function SellerOrderDetails() {
                       {item.quantity}
                     </td>
                     <td
+                      width="70"
                       data-testid={
                         `customer_order_details__element-order-table-unit-price-${index}`
                       }
@@ -174,8 +176,11 @@ function SellerOrderDetails() {
               Saiu para entrega
             </button>
           ) : null }
+          { sale.status === 'Em Trânsito' ? (
+            <p id="text">Aguardando confirmação do cliente</p>
+          ) : null }
           { sale.status === 'Entregue' ? (
-            <p>O pedido foi entregue e confirmado pelo cliente!</p>
+            <p id="text">O pedido foi entregue e confirmado pelo cliente!</p>
           ) : null }
         </div>))
   );

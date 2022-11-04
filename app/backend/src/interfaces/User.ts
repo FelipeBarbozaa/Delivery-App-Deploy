@@ -31,6 +31,6 @@ export interface IUserService {
   create(data: RegisterData): Promise <User | null>;
   createByAdmin(data: RegisterData): Promise <void>;
   remove(id: number): Promise<void>;
-  emailConfirmation(token: string): Promise<boolean>;
+  emailConfirmation(token: string): Promise<User | boolean>;
   getAll(): Promise<User[]>;
 }

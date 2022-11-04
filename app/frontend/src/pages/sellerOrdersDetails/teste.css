@@ -14,6 +14,12 @@ table {
   margin-bottom: 5px;
 }
 
+#text {
+  font-family: 'Chivo', sans-serif;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
 .order-details div div {
   margin-top: 15px;
 }

@@ -17,7 +17,7 @@ router.get('/getIdByName', validateRouteToken,
   (req, res) => UserFactory().getIdByName(req, res));
 router.get('/sellers', validateRouteToken,
   (req, res) => UserFactory().getSellers(req, res));
-router.post('/admin/register',
+router.post('/admin/register', registerCredencials,
   (req, res) => UserFactory().createByAdmin(req, res));
 router.delete('/admin/delete/:id',
   (req, res) => UserFactory().remove(req, res));

@@ -20,8 +20,9 @@ export default class UserController {
     const { token } = req.params;
     const result = await this.userService.emailConfirmation(token);
     if (result) {
-      return res.status(201).end();
+      return res.status(201).json(result);
     }
+    return res.status(500).end();
   }
 
   async getAll(_req: Request, res: Response) {

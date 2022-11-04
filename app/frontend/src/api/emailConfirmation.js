@@ -7,5 +7,5 @@ export default async function emailConfirmation(token) {
   };
 
   const response = await fetch(`http://localhost:3001/confirmation/${token}`, requestOptions);
-  return response;
+  return response.json();
 }

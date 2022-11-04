@@ -44,17 +44,27 @@ export default class UserService implements IUserService {
 
     const result = await this.model.create(data);
     if (result) {
-      const token = Token.createToken({ id: result.id, type: 'activation' });
+      const token = Token.createToken({
+        id: result.id, type: 'activation', name: result.name,
+        email: result.email,
+        role: result.role,
+      });
       sendEmail(email, token);
     }
     return result;
   }
 
-  async emailConfirmation(token: string): Promise<boolean> {
+  async emailConfirmation(token: string): Promise<User | boolean> {
     const response = Token.validateToken(token as string);
     if (response && response.type === 'activation') {
       await this.model.update(response.id as number);
-      return true;
+      const newToken = Token.createToken({
+        id: response.id, name: response.name, email: response.email,
+        role: response.role, type: 'authentication'
+      });
+      const result = { response, newToken };
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      return result as unknown as any ;
     }
     return false;
   }
@@ -65,11 +75,17 @@ export default class UserService implements IUserService {
   }
 
   async createByAdmin(data: RegisterData): Promise<void> {
-    const { email } = data;
+    const { email, name } = data;
     const emailExistsError = new Error(ErrorTypes.EmailExists);
+    const userExistsError = new Error(ErrorTypes.UserExists);
 
-    const checkIfExists = await this.model.getByEmail(email);
-    if (checkIfExists) throw emailExistsError;
+    const checkIfNameExists = await this.model.getIdByName(name);
+    if (checkIfNameExists) throw userExistsError;
+
+    const checkIfEmailExists = await this.model.getByEmail(email);
+    if (checkIfEmailExists) throw emailExistsError;
+
+
     await this.model.createByAdmin(data);
   }
 

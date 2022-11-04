@@ -34,7 +34,7 @@ function SellerOrders() {
 
   return (
     <div className="meus-pedidos-container">
-      <Header initialName="Felipe Barboza" />
+      <Header />
       <table>
         <thead>
           <tr className="cabecalho-table-container">

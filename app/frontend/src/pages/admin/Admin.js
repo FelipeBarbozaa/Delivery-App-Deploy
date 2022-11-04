@@ -5,12 +5,18 @@ import Header from '../../components/Header';
 import getAllUsers from '../../api/getAllUsers';
 import removeOne from '../../api/removeUser';
 import trash from '../../images/trash.png';
+import userRegisterSchema from '../../schemas/registerSchema';
 import './style.css';
 
 function Admin() {
   const [users, setUsers] = useState([]);
-  const [registerData, setRegisterData] = useState({ role: 'customer' });
+  const [error, setError] = useState({ active: false, message: '', success: false });
+  const [disabled, setDisabled] = useState(true);
   const [callback, setCallback] = useState(0);
+  const [registerData, setRegisterData] = useState(
+    { role: 'customer', email: '', name: '', password: '' },
+  );
+  const { name, email, password } = registerData;
 
   const token = localStorage.getItem('token');
 
@@ -18,8 +24,27 @@ function Admin() {
     getAllUsers(token).then((response) => setUsers(response));
   }, [token, callback]);
 
-  const handleRegisterData = async ({ target: { value, name } }) => {
-    setRegisterData({ ...registerData, [name]: value });
+  useEffect(() => {
+    const { error: joiError } = userRegisterSchema
+      .validate({ name, email, password });
+    if (joiError) {
+      setError({ active: true, message: joiError.message });
+    } else {
+      setError({ active: false });
+    }
+    if (joiError && joiError.message.match('required')) {
+      setError({ active: false });
+    }
+    if (name && email && password && !joiError) {
+      setError({ active: false, message: '' });
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [name, email, password, registerData]);
+
+  const handleRegisterData = async ({ target: { value, name: name2 } }) => {
+    setRegisterData({ ...registerData, [name2]: value });
   };
 
   async function handleClickRegister() {
@@ -31,7 +56,13 @@ function Admin() {
       active: 1,
     };
     const result = await tryRegisterByAdminApi(token, newData);
-    console.log(result);
+    if (result.message) {
+      setRegisterData({ role: 'customer', email: '', name: '', password: '' });
+    } else if (result.error.match('User')) {
+      setError({ active: true, message: 'User already exists' });
+    } else if (result.error.match('Email')) {
+      setError({ active: true, message: 'Email already exists' });
+    }
     setCallback(callback + 1);
   }
 
@@ -44,9 +75,14 @@ function Admin() {
     <div>
       <Header initialName="Felipe Barboza" />
       <div className="form__group2">
+        <br />
+        { error.active
+          ? <p id="error_msg">{ error.message }</p> : null}
+        <br />
         <input
           id="inputName"
           name="name"
+          value={ name }
           onChange={ (e) => handleRegisterData(e) }
           className="form__field"
           placeholder="Nome e sobrenome"
@@ -56,6 +92,7 @@ function Admin() {
         />
         <input
           onChange={ (e) => handleRegisterData(e) }
+          value={ email }
           name="email"
           className="form__field"
           id="inputEmail"
@@ -66,6 +103,7 @@ function Admin() {
         />
         <input
           className="form__field"
+          value={ password }
           name="password"
           onChange={ (e) => handleRegisterData(e) }
           id="inputPassword"
@@ -90,6 +128,7 @@ function Admin() {
           onClick={ () => handleClickRegister() }
           type="button"
           className="btn draw-border"
+          disabled={ disabled }
         >
           CADASTRAR
         </button>
