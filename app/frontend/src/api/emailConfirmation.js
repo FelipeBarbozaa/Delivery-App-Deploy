@@ -6,6 +6,6 @@ export default async function emailConfirmation(token) {
     },
   };
 
-  const response = await fetch(`https://delivery-app-deploy-production.up.railway.app/${token}`, requestOptions);
+  const response = await fetch(`https://delivery-app-deploy-production.up.railway.app/confirmation/${token}`, requestOptions);
   return response.json();
 }
