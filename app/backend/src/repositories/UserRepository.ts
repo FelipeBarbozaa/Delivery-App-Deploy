@@ -32,7 +32,8 @@ export default class UserRepository implements IUserModel {
   }
 
   async getAll(): Promise<User[]> {
-    const result = await this.userModel.findAll();
+    const result = await this.userModel.findAll(
+      { attributes: { exclude: ['password', 'active']}});
     return result;
   }
 
