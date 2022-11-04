@@ -7,5 +7,5 @@ export default async function removeOne(token, id) {
     },
   };
 
-  await fetch(`http://localhost:3001/admin/delete/${id}`, requestOptions);
+  await fetch(`https://delivery-app-deploy-production.up.railway.app/admin/delete/${id}`, requestOptions);
 }

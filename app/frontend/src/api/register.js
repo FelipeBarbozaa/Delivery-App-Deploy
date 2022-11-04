@@ -7,6 +7,6 @@ export default async function tryRegister(userData) {
     body: JSON.stringify(userData),
   };
 
-  const response = await fetch('http://localhost:3001/register', requestOptions);
+  const response = await fetch('https://delivery-app-deploy-production.up.railway.app/register', requestOptions);
   return response.json();
 }

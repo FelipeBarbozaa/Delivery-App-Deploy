@@ -7,6 +7,6 @@ export default async function tryLogin(userData) {
     body: JSON.stringify(userData),
   };
 
-  const response = await fetch('http://localhost:3001/login', requestOptions);
+  const response = await fetch('https://delivery-app-deploy-production.up.railway.app/login', requestOptions);
   return response.json();
 }

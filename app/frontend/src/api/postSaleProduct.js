@@ -8,5 +8,5 @@ export default async function postSaleApi(token, saleData) {
     body: JSON.stringify(saleData),
   };
 
-  await fetch('http://localhost:3001/saleProduct', requestOptions);
+  await fetch('https://delivery-app-deploy-production.up.railway.app/saleProduct', requestOptions);
 }

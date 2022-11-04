@@ -7,7 +7,7 @@ export default async function getSalesDetails(token, id) {
     },
   };
 
-  const response = await fetch(`http://localhost:3001/saleDetails/${id}`, requestOptions);
+  const response = await fetch(`https://delivery-app-deploy-production.up.railway.app/saleDetails/${id}`, requestOptions);
   const result = await response.json();
 
   return result;

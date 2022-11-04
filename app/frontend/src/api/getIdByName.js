@@ -8,6 +8,6 @@ export default async function getIdByName(token, name) {
     },
   };
 
-  const response = await fetch('http://localhost:3001/getIdByName', requestOptions);
+  const response = await fetch('https://delivery-app-deploy-production.up.railway.app/getIdByName', requestOptions);
   return response.json();
 }

@@ -10,6 +10,6 @@ export default async function updateOrderStatus(token, id) {
     },
   };
 
-  const response = await fetch(`http://localhost:3001/sales/${id}`, requestOptions);
+  const response = await fetch(`https://delivery-app-deploy-production.up.railway.app/sales/${id}`, requestOptions);
   return response.json();
 }
