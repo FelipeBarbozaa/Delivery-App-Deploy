@@ -1,7 +1,7 @@
 import transporter from './config';
 
 const sendEmail = async (email: string, token: string) => {
-  const URL = 'https://delivery-app-deploy-production.up.railway.app';
+  const URL = 'https://delivery-app-deploy.vercel.app/';
   const URL_TOTAL = `${URL}/confirmation/${token}`;
 
   await transporter.sendMail({
