@@ -1,9 +1,8 @@
 import app from './app';
+import 'dotenv/config';
 
-const PORT = 3001;
-
-const server = app.listen(PORT, () => console.log(
-  `Server is running on PORT: ${PORT}`,
+const server = app.listen(process.env.PORT, () => console.log(
+  `Server is running on PORT: ${process.env.PORT}`,
 ));
 
 export default server;

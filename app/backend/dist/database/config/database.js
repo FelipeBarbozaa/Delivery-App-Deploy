@@ -1,15 +1,11 @@
 "use strict";
 require("dotenv/config");
 const config = {
-    username: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || '123456',
-    database: 'delivery_app',
-    host: process.env.DB_HOST || 'localhost',
-    port: Number(process.env.DB_PORT) || 3002,
-    dialect: 'mysql',
-    dialectOptions: {
-        timezone: 'Z',
-    },
-    logging: false,
+    username: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    host: process.env.PGHOST,
+    port: Number(process.env.PGPORT),
+    dialect: 'postgres',
 };
 module.exports = config;
