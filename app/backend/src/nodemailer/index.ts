@@ -1,14 +1,14 @@
 import transporter from './config';
 
 const sendEmail = async (email: string, token: string) => {
-  const url = `https://delivery-app-deploy-production.up.railway.app/
-    confirmation/${token}`;
+  const URL = 'https://delivery-app-deploy-production.up.railway.app/';
+  const URL_TOTAL = `${URL}/confirmation/${token}`;
 
   await transporter.sendMail({
     subject: 'Confirm your email',
     to: email,
     html: `Please click this email
-      to confirm your email: <a href="${url}">${url}</a>`,
+      to confirm your email: <a href="${URL_TOTAL}">${URL_TOTAL}</a>`,
   });
 };
 
