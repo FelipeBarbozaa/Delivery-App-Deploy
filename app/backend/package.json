@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint ./src --ext ts",
     "build": "tsc",
-    "start": "node .",
+    "start": "node /dist/server",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --watch \"./src/**\" ./src/server.ts",
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
